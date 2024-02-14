@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int n, m;
+int n, m, ans;
 char arr[1010][1010];
 int vis[1010][1010];
 bool safe[1010][1010];
@@ -24,7 +24,7 @@ void dfs(int y, int x) {
         vis[ny][nx] = 2;
     }
     else if (vis[ny][nx] == 1) {
-        safe[ny][nx] = true;
+        ans++;
     }
 }
 
@@ -40,11 +40,6 @@ int main() {
         for (int j = 0; j < m; j++) 
             if(vis[i][j] == 0)
                 dfs(i, j);
-        
-    int ans = 0;
-    for (int i = 0; i < n; i++) 
-        for (int j = 0; j < m; j++)
-            safe[i][j] && ans++;
     
     cout << ans;
 }
