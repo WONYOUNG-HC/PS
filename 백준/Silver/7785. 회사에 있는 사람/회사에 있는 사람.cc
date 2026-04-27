@@ -1,0 +1,26 @@
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n; cin >> n;
+
+    set<string> log;
+
+    for (int i = 0; i < n; i++) {
+        string name, order;
+        cin >> name >> order;
+
+        if (order == "enter")
+            log.insert(name);
+        else
+            log.erase(name);
+    }
+
+    for (auto riter = log.rbegin(); riter != log.rend(); riter++)
+        cout << *riter << '\n';
+}

@@ -1,0 +1,1 @@
+print(min([i+e for i, e in enumerate(list(map(int, input().split())))])*2-1)

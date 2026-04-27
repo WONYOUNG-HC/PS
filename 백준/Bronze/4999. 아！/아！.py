@@ -1,0 +1,1 @@
+print(['go', 'no'][input() > input()])

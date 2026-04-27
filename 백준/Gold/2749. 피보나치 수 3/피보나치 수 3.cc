@@ -1,0 +1,86 @@
+#include <iostream>
+
+#define M 1000000
+
+using namespace std;
+
+class MatrixPow {
+public:
+    static int n;
+private:
+    int matrix[2][2]{};
+public:
+    void SetMatrix();
+    MatrixPow operator*(const MatrixPow& arg) const;
+    MatrixPow& operator=(const MatrixPow& arg);
+    int GetFib() { return matrix[0][0]; }
+};
+int MatrixPow::n = 2;
+
+MatrixPow Power(MatrixPow& mp, long long b);
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    long long b;
+    cin >> b;
+    MatrixPow mp;
+    mp.SetMatrix();
+
+    b == 1 ? cout << 1 : cout << Power(mp, b-1).GetFib();
+}
+
+pair<long long, MatrixPow> memoization;
+
+MatrixPow Power(MatrixPow& mp, long long b) {
+    if (b == 1)
+        return mp;
+
+    if (b % 2 == 0) {
+        if (memoization.first == b)
+            return memoization.second;
+
+        MatrixPow ret = Power(mp, b/2) * Power(mp, b/2);
+        memoization.first = b;
+        memoization.second = ret;
+        return ret;
+    }
+    else {
+        if (b == memoization.first)
+            return memoization.second;
+
+        MatrixPow ret = Power(mp, (b-1)/2) * Power(mp, (b-1)/2) * mp;
+        memoization.first = b;
+        memoization.second = ret;
+        return ret;
+    }
+}
+
+void MatrixPow::SetMatrix() {
+    matrix[0][0] = 1;
+    matrix[0][1] = 1;
+    matrix[1][0] = 1;
+    matrix[1][1] = 0;
+}
+
+MatrixPow MatrixPow::operator*(const MatrixPow& arg) const {
+    MatrixPow ret;
+    for (int i=0; i<MatrixPow::n; i++) {
+        for (int j=0; j<MatrixPow::n; j++) {
+            for (int k=0; k<MatrixPow::n; k++) {
+                ret.matrix[i][j] += (this->matrix[i][k] * (long long)arg.matrix[k][j]) % M;
+                ret.matrix[i][j] %= M;
+            }
+        }
+    }
+    return ret;
+}
+
+MatrixPow& MatrixPow::operator=(const MatrixPow& arg) {
+    for (int i=0; i<MatrixPow::n; i++)
+        for (int j=0; j<MatrixPow::n; j++)
+            this->matrix[i][j] = arg.matrix[i][j];
+
+    return *this;
+}

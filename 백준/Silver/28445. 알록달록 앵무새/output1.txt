@@ -1,0 +1,9 @@
+blue blue
+blue green
+blue purple
+green blue
+green green
+green purple
+purple blue
+purple green
+purple purple

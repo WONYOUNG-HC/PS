@@ -1,0 +1,16 @@
+blue blue
+blue purple
+blue white
+blue yellow
+purple blue
+purple purple
+purple white
+purple yellow
+white blue
+white purple
+white white
+white yellow
+yellow blue
+yellow purple
+yellow white
+yellow yellow

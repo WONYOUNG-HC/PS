@@ -1,0 +1,7 @@
+6 11
+XXXXXXXXXXX
+X......XPPX
+XC...P.XPPX
+X......X..X
+X....C....X
+XXXXXXXXXXX
